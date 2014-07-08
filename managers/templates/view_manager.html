@@ -16,7 +16,7 @@
 				<button id="edit_profile" type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-wrench"></span><span class="hidden-xs"> Edit</span></button>
 			</form>
 		{% endif %}
-		<h3 class="table_title{% if user.is_superuser or PRESIDENT %} small_title{% endif %}">View Manager</h3>
+		<h3 class="table_title{% if user.is_superuser or PRESIDENT %} small_title{% endif %}">View Coordinator</h3>
 	</div> <!-- .header -->
 	<div class="main_table">
 	<dl id="profile_table" class="dl-horizontal">
@@ -28,7 +28,7 @@
 		<dt>E-mail</dt>
 			<dd><a title="Write E-mail" href="mailto:{{ targetManager.email }}">{{ targetManager.email }}</a></dd>
 		{% elif targetManager.incumbent.email_visible and targetManager.incumbent.user.email %}
-		<dt title="No e-mail address for this manager in database. This is the incumbent's personal e-mail address.">Personal E-mail</dt>
+		<dt title="No e-mail address for this coordinator in database. This is the incumbent's personal e-mail address.">Personal E-mail</dt>
 			<dd><a title="Write E-mail" href="mailto:{{ targetManager.incumbent.user.email }}">{{ targetManager.incumbent.user.email }}</a></dd>
 		{% endif %}
 		{% if targetManager.incumbent.phone_visible %}
@@ -43,7 +43,7 @@
 	<hr>
 	<div class="text-center">
 		<form action="{% url 'list_managers' %}">
-			<button id="member_directory" type="submit" class="btn btn-lg btn-info"><span class="glyphicon glyphicon-tower"></span> Manager Directory</button>
+			<button id="member_directory" type="submit" class="btn btn-lg btn-info"><span class="glyphicon glyphicon-tower"></span> Coordinator Directory</button>
 		</form>
 	</div>
 	</div> <!-- .main_table -->

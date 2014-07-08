@@ -74,7 +74,7 @@
 		{% endfor %}
     </div>
     {% else %}
-    <div class="field_wrapper text-danger">No active managers are currently responsible for addressing {{ type_tuple.0.name.lower }} requests.</div>
+    <div class="field_wrapper text-danger">No active coordinators are currently responsible for addressing {{ type_tuple.0.name.lower }} requests.</div>
     {% endif %}
     {% if not type_tuple.3 %}
     <div class="field_wrapper text-info">You have no {{ type_tuple.0.name.lower }} requests.</div>
@@ -99,7 +99,7 @@
 	  {% if forloop.counter > 1 %}
 	  <hr class="main_divider" />
 	  {% endif %}
-	  <div class="response_row{% if response.manager %} bg-info" title="Manager Response{% endif %}">
+	  <div class="response_row{% if response.manager %} bg-info" title="Coordinator Response{% endif %}">
 	    <div class="response_owner">
 	      <a class="page_link" title="View Profile" href="{% url 'member_profile' targetUsername=response.owner.user.username %}" >{{ response.owner|display_user:user }}</a> ({{ response.post_date }}):
 	    </div> <!-- response_owner -->

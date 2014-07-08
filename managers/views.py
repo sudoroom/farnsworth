@@ -57,7 +57,7 @@ def list_managers_view(request):
 	''' Show a list of manager positions with links to view in detail. '''
 	managerset = Manager.objects.filter(active=True)
 	return render_to_response('list_managers.html', {
-			'page_name': "Managers",
+			'page_name': "Coordinators",
 			'managerset': managerset,
 			}, context_instance=RequestContext(request))
 
@@ -75,7 +75,7 @@ def manager_view(request, managerTitle):
 		return HttpResponseRedirect(reverse('list_managers'))
 	else:
 		return render_to_response('view_manager.html', {
-				'page_name': "View Manager",
+				'page_name': "View Coordinator",
 				'targetManager': targetManager,
 				}, context_instance=RequestContext(request))
 
@@ -87,7 +87,7 @@ def meta_manager_view(request):
 	'''
 	managers = Manager.objects.all()
 	return render_to_response('meta_manager.html', {
-			'page_name': "Admin - Meta-Manager",
+			'page_name': "Admin - Meta-Coordinator",
 			'managerset': managers,
 			}, context_instance=RequestContext(request))
 
@@ -101,7 +101,7 @@ def add_manager_view(request):
 					 MESSAGES['MANAGER_ADDED'].format(managerTitle=manager.title))
 		return HttpResponseRedirect(reverse('add_manager'))
 	return render_to_response('edit_manager.html', {
-			'page_name': "Admin - Add Manager",
+			'page_name': "Admin - Add Coordinator",
 			'form': form,
 			}, context_instance=RequestContext(request))
 
@@ -123,7 +123,7 @@ def edit_manager_view(request, managerTitle):
 							 MESSAGES['MANAGER_SAVED'].format(managerTitle=manager.title))
 		return HttpResponseRedirect(reverse('meta_manager'))
 	return render_to_response('edit_manager.html', {
-			'page_name': "Admin - Edit Manager",
+			'page_name': "Admin - Edit Coordinator",
 			'form': form,
 			'manager_title': targetManager.title,
 			}, context_instance=RequestContext(request))
@@ -479,7 +479,7 @@ def edit_announcement_view(request, announcement_pk):
 @profile_required
 def announcements_view(request):
 	''' The view of manager announcements. '''
-	page_name = "Manager Announcements"
+	page_name = "Coordinator Announcements"
 	userProfile = UserProfile.objects.get(user=request.user)
 	announcement_form = None
 	manager_positions = Manager.objects.filter(incumbent=userProfile)

@@ -44,7 +44,7 @@ function hide_form(form_id) {
 		</h3>
 	</div>
 	<div class="main_table">
-    <div class="field_wrapper text-info">You hold a manager position responsible for addressing these requests.</div>
+    <div class="field_wrapper text-info">You hold a coordinator position responsible for addressing these requests.</div>
 	{% for request_tuple in type_tuple.1 %}
 	{% if forloop.counter > 1 %}
 	<hr style="margin-top: 3px; margin-bottom: 3px;"/>
@@ -86,7 +86,7 @@ function hide_form(form_id) {
 			{% if forloop.counter > 1 %}
 			<hr class="main_divider" />
 			{% endif %}
-			<div class="response_row hover_row{% if response.manager %} bg-info" title="Manager Response{% endif %}">
+			<div class="response_row hover_row{% if response.manager %} bg-info" title="Coordinator Response{% endif %}">
 				<div class="response_owner">
 					<a class="page_link" title="View Profile" href="{% url 'member_profile' targetUsername=response.owner.user.username %}">{{ response.owner|display_user:user }}</a> ({{ response.post_date }}):
 				</div> <!-- .response_owner -->
@@ -154,7 +154,7 @@ function hide_form(form_id) {
 		<form id="new_announcement_form" class="main_form" method="post" action="">
 			{% csrf_token %}
 			<div class="form-group">
-				<label class="control-label" for="id_as_manager">As Manager</label>
+				<label class="control-label" for="id_as_manager">As Coordinator</label>
 				{{ announcement_form.manager }}
 			</div>
 			<div class="form-group">

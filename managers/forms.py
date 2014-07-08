@@ -22,12 +22,12 @@ class ManagerForm(forms.ModelForm):
 	def clean_title(self):
 		title = self.cleaned_data['title']
 		if Manager.objects.filter(title=title).count() and Manager.objects.get(title=title) != self.instance:
-			raise forms.ValidationError("A manager with this title already exists.")
+			raise forms.ValidationError("A coordinator with this title already exists.")
 		if not verify_url(title):
 			raise forms.ValidationError("Invalid title. Must be characters A-Z, a-z, 0-9, space, or _&-'?$^%@!#*()=+;:|/.,")
 		url_title = convert_to_url(title)
 		if Manager.objects.filter(url_title=url_title).count() and Manager.objects.get(url_title=url_title) != self.instance:
-			raise forms.ValidationError('This manager title maps to a url that is already taken.  Please note, "Site Admin" and "sITe_adMIN" map to the same URL.')
+			raise forms.ValidationError('This coordinator title maps to a url that is already taken.  Please note, "Site Admin" and "sITe_adMIN" map to the same URL.')
 		return title
 
 	def clean(self):

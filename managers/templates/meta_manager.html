@@ -11,13 +11,13 @@
 <div class="table_container">
 	<div class="header">
 		<form class="header_form" action="{% url 'add_manager' %}">
-			<button id="add_manager" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span><span class="hidden-xs"> Add Manager</span></button>
+			<button id="add_manager" type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span><span class="hidden-xs"> Add Coordinator</span></button>
 		</form>
-		<h3 class="table_title small_title">Manage Managers</h3>
+		<h3 class="table_title small_title">Manage Coordinators</h3>
 	</div> <!-- .header -->
 	<div class="main_table">
 	{% if not managerset %}
-		<div class="field_wrapper text-danger">No managers in database.</div>
+		<div class="field_wrapper text-danger">No coordinators in database.</div>
 	{% else %}
 	<table class="table table-striped table-bordered table-condensed table-hover" id="managers_table" style="margin: 0px;">
 	<thead>
@@ -31,7 +31,7 @@
 	</thead>
 	<tbody>
 		{% for pos in managerset %}
-		<tr><td><a title="Edit Manager" href="{% url 'edit_manager' managerTitle=pos.url_title %}"><span class="glyphicon glyphicon-wrench"></span> {{ pos.title }}</a></td>
+		<tr><td><a title="Edit Coordinator" href="{% url 'edit_manager' managerTitle=pos.url_title %}"><span class="glyphicon glyphicon-wrench"></span> {{ pos.title }}</a></td>
 			<td>{% if pos.incumbent %}<a title="View Profile" href="{% url 'member_profile' targetUsername=pos.incumbent.user.username %}"><span class="glyphicon glyphicon-user"></span> {{ pos.incumbent.user.get_full_name }}</a>{% endif %}</td>
 			<td>{% if pos.active %}<span style="display: none">1</span><img src="{% static 'admin/img/icon-yes.gif' %}" alt="Yes" />{% else %}<span style="display: none">2</span><img src="{% static 'admin/img/icon-no.gif' %}" alt="No" />{% endif %}</td>
 			<td>{% if pos.president %}<span style="display: none">1</span><img src="{% static 'admin/img/icon-yes.gif' %}" alt="Yes" />{% else %}<span style="display: none">2</span><img src="{% static 'admin/img/icon-no.gif' %}" alt="No" />{% endif %}</td>
@@ -47,7 +47,7 @@
 <div class="alert alert-info" style="margin-top: 10px;">
 Don't know how to use this page?  Check out the
 <a target="_blank" href="{% url 'helppage' %}#meta_manager" class="alert-link"><span class="glyphicon glyphicon-new-window"></span>
-Meta-Manager section</a> of the
+Meta-Coordinator section</a> of the
 <a target="_blank" href="{% url 'helppage' %}" class="alert-link"><span class="glyphicon glyphicon-new-window"></span> help page</a>.
 </div>
 {% endblock %}
