@@ -81,15 +81,15 @@ class EventForm(forms.Form):
 				title=self.cleaned_data['title'],
 				description=self.cleaned_data['description'],
 				location=self.cleaned_data['location'],
-				start_time=self.cleaned_data['start_time'].replace(tzinfo=utc),
-				end_time=self.cleaned_data['end_time'].replace(tzinfo=utc),
+				start_time=self.cleaned_data['start_time'],
+				end_time=self.cleaned_data['end_time'],
 				)
 		else:
 			self.instance.title = self.cleaned_data['title']
 			self.instance.description = self.cleaned_data['description']
 			self.instance.location = self.cleaned_data['location']
-			self.instance.start_time = self.cleaned_data['start_time'].replace(tzinfo=utc)
-			self.instance.end_time = self.cleaned_data['end_time'].replace(tzinfo=utc)
+			self.instance.start_time = self.cleaned_data['start_time']
+			self.instance.end_time = self.cleaned_data['end_time']
 			self.instance.cancelled = self.cleaned_data['cancelled']
 			event = self.instance
 		event.save()
@@ -123,7 +123,7 @@ class RsvpForm(forms.Form):
 	def clean(self):
 		event = self.instance or self.cleaned_data.get('event_pk', None)
 		if event:
-			now = datetime.utcnow().replace(tzinfo=utc)
+			now = datetime.utcnow()
 			if event.end_time <= now:
 				raise forms.ValidationError(MESSAGES['ALREADY_PAST'])
 		return self.cleaned_data
