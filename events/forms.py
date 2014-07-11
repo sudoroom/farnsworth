@@ -54,7 +54,7 @@ class EventForm(forms.Form):
 		super(EventForm, self).__init__(*args, **kwargs)
 		if self.manager_positions:
 			self.fields['as_manager'].queryset = self.manager_positions
-			self.fields["as_manager"].empty_label = None
+			self.fields["as_manager"].empty_label = "------"
 			self.fields["as_manager"].initial = self.manager_positions[0].pk
 		else:
 			self.fields["as_manager"].widget = forms.HiddenInput()
@@ -99,7 +99,9 @@ class EventForm(forms.Form):
 		as_manager = self.cleaned_data['as_manager']
 		if as_manager:
 			event.as_manager = as_manager
-			event.save()
+		else:
+			event.as_manager = None
+		event.save()
 		return event
 
 class RsvpForm(forms.Form):
