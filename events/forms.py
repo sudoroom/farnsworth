@@ -126,6 +126,6 @@ class RsvpForm(forms.Form):
 		event = self.instance or self.cleaned_data.get('event_pk', None)
 		if event:
 			now = datetime.utcnow()
-			if event.end_time <= now:
+			if event.end_time <= now.replace(tzinfo=utc):
 				raise forms.ValidationError(MESSAGES['ALREADY_PAST'])
 		return self.cleaned_data
